@@ -1,33 +1,11 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-}
 provider "aws" {
-  region = "ap-southeast-1" # Change to your desired region
+    region = "us-east-1"  
 }
 
-resource "aws_instance" "example" {
-  ami           = "ami-06d753822bd94c64e" # Change to your desired AMI ID
+resource "aws_instance" "foo" {
+  ami           = "ami-05fa00d4c63e32376" # us-west-2
   instance_type = "t2.micro"
-
   tags = {
-    Name = "ExampleInstance"
+      Name = "TF-Instance"
   }
-}
-
-resource "aws_s3_bucket" "example" {
-  bucket = "example-bucket-123456" # Change to your desired bucket name
-  acl    = "private"
-}
-
-output "instance_id" {
-  value = aws_instance.example.id
-}
-
-output "bucket_arn" {
-  value = aws_s3_bucket.example.arn
 }
